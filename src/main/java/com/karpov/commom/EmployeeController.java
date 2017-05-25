@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -58,17 +57,17 @@ public class EmployeeController {
 	@RequestMapping(value = "/edit/{Id}")
 	public String editContact(Model model, @PathVariable Long Id) {
 		Employee employee = employeeRepository.findOne(Id);
-		model.addAttribute("employees", employeeService.getAllEmployees());
+		model.addAttribute("employees", employeeRepository.findAll());
 		model.addAttribute("employee", employee);
 		return "employee";
 	}
 
 	@RequestMapping(value = "/delete/{Id}")
-	public ModelAndView delete(@PathVariable Long Id, RedirectAttributes redirect) {
+	public String delete(@PathVariable Long Id, RedirectAttributes redirect) {
 		employeeRepository.delete(Id);
 
 		redirect.addFlashAttribute("success", "Emp ID " + Id + " Deleted successfully!");
-		return new ModelAndView("redirect:/employees");
+		return "redirect:/employees";
 	}
 
 }
