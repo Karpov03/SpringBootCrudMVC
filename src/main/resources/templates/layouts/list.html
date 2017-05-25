@@ -1,0 +1,29 @@
+<div th:fragment="list"
+	class="navbar navbar-default navbar-fixed-bottom"
+	xmlns:th="http://www.w3.org/1999/xhtml">
+	<div class="container">
+		<table class="table" border="1" >
+			<thead>
+				<tr>
+				<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Address</th>
+					<th>Telephone</th>
+					<th colspan="2">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="employee : ${employees}">
+					<td th:text="${employee.id}"></td>
+					<td th:text="${employee.name}"></td>
+					<td th:text="${employee.email}"></td>
+					<td th:text="${employee.address}"></td>
+					<td th:text="${employee.telephone}"></td>
+					<td width="10%"><a th:href="@{/edit/}+ ${employee.id}" class="btn btn-danger">Edit</a></td>
+					<td width="10%"><a th:href="@{/delete/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

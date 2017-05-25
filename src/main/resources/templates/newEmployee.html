@@ -1,0 +1,30 @@
+<div th:fragment="add"
+	class="navbar navbar-default navbar-fixed-bottom"
+	xmlns:th="http://www.w3.org/1999/xhtml">
+
+	<div align="center">
+		<h1>New/Edit Employee</h1>
+
+
+		<div>
+			<form th:object="${employee}" th:action="@{/save}" action="#"
+				method="post">
+				<input type="hidden" th:field="*{id}" class="form-control"
+					placeholder="EmployeeName" /> <input type="text"
+					th:field="*{name}" class="form-control" placeholder="EmployeeName" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<input type="text" th:field="*{email}" class="form-control"
+					placeholder="Email" /> <input type="text" th:field="*{address}"
+					class="form-control" placeholder="Address" /> <input type="text"
+					th:field="*{telephone}" class="form-control"
+					placeholder="Telephone" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<input type="submit" class="btn btn-success" value="Save"></input>
+			</form>
+			<h4>
+				<a th:href="@{/employees/}">View All</a>
+			</h4>
+		</div>
+
+	</div>
+</div>
